@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans antialiased;
+  }
+  
+  * {
+    @apply border-transparent;
+  }
+}
+
+@layer components {
+  .glow-effect {
+    @apply relative transition-all duration-300;
+  }
+  
+  .glow-effect::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.4) 0%, transparent 70%);
+    z-index: -1;
+  }
+  
+  .glow-effect:hover::before {
+    @apply opacity-100;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/20 border border-white/30 shadow-xl;
+  }
+  
+  .dark .glass-effect {
+    @apply bg-black/30 border-white/20 shadow-2xl;
+  }
+  
+  .molecule-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+  }
+  
+  .element-card {
+    @apply relative cursor-pointer transition-all duration-300 hover:scale-110 hover:z-20;
+    @apply bg-white/90 dark:bg-gray-800/90 border-2 border-gray-200 dark:border-gray-600;
+    @apply shadow-lg hover:shadow-2xl;
+  }
+  
+  .element-card:hover {
+    @apply border-cyan-400 dark:border-cyan-300;
+    box-shadow: 
+      0 0 30px rgba(0, 217, 255, 0.6),
+      0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .element-card:hover {
+    box-shadow: 
+      0 0 30px rgba(0, 217, 255, 0.8),
+      0 10px 40px rgba(0, 0, 0, 0.6);
+  }
+  
+  .reaction-card {
+    @apply glass-effect rounded-xl p-4 md:p-6 transition-all duration-300;
+    @apply hover:bg-white/30 dark:hover:bg-black/40;
+    @apply border-2 border-gray-200/50 dark:border-gray-600/50;
+    @apply hover:border-cyan-400/70 dark:hover:border-cyan-300/70;
+    @apply shadow-lg hover:shadow-2xl;
+  }
+  
+  .search-glow {
+    @apply focus:ring-4 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300;
+    @apply bg-white/95 dark:bg-gray-800/95 border-2 border-gray-300 dark:border-gray-600;
+    @apply shadow-lg focus:shadow-xl;
+  }
+  
+  .dark .search-glow {
+    @apply focus:ring-cyan-300/60 focus:border-cyan-300;
+  }
+  
+  .neon-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600;
+    @apply drop-shadow-lg;
+  }
+  
+  .dark .neon-text {
+    @apply from-cyan-300 via-blue-400 to-purple-500;
+    filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.5));
+  }
+  
+  .section-gradient {
+    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900;
+  }
+  
+  .light-gradient {
+    @apply bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50;
+  }
+
+  /* Enhanced button styles */
+  .nav-button {
+    @apply px-6 py-3 rounded-full flex items-center space-x-2 transition-all duration-300;
+    @apply font-semibold text-sm md:text-base;
+    @apply border-2 border-transparent;
+    @apply shadow-lg hover:shadow-xl;
+  }
+  
+  .nav-button.active {
+    @apply bg-gradient-to-r from-cyan-500 to-blue-600 text-white;
+    @apply border-cyan-400 shadow-cyan-400/50;
+    @apply hover:from-cyan-400 hover:to-blue-500;
+    box-shadow: 
+      0 0 20px rgba(0, 217, 255, 0.4),
+      0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark .nav-button.active {
+    @apply from-cyan-400 to-blue-500;
+    box-shadow: 
+      0 0 25px rgba(0, 217, 255, 0.6),
+      0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .nav-button.inactive {
+    @apply bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300;
+    @apply border-gray-300 dark:border-gray-600;
+    @apply hover:bg-white/95 dark:hover:bg-gray-700/95;
+    @apply hover:border-gray-400 dark:hover:border-gray-500;
+    @apply hover:text-gray-900 dark:hover:text-gray-100;
+  }
+
+  /* Enhanced filter and control styles */
+  .filter-select {
+    @apply w-full p-3 rounded-lg transition-all duration-300;
+    @apply bg-white/95 dark:bg-gray-800/95;
+    @apply border-2 border-gray-300 dark:border-gray-600;
+    @apply text-gray-900 dark:text-gray-100;
+    @apply focus:ring-4 focus:ring-cyan-400/50 focus:border-cyan-400;
+    @apply shadow-md focus:shadow-lg;
+    @apply font-medium;
+  }
+  
+  .dark .filter-select {
+    @apply focus:ring-cyan-300/60 focus:border-cyan-300;
+  }
+  
+  .filter-label {
+    @apply block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2;
+    @apply tracking-wide;
+  }
+
+  /* Enhanced theme toggle */
+  .theme-toggle {
+    @apply relative p-3 rounded-full transition-all duration-300;
+    @apply bg-white/90 dark:bg-gray-800/90;
+    @apply border-2 border-gray-300 dark:border-gray-600;
+    @apply shadow-lg hover:shadow-xl;
+    @apply hover:border-cyan-400 dark:hover:border-cyan-300;
+    @apply hover:bg-white dark:hover:bg-gray-700;
+  }
+  
+  .theme-toggle:hover {
+    box-shadow: 
+      0 0 20px rgba(0, 217, 255, 0.3),
+      0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Enhanced element details modal */
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/60 backdrop-blur-md z-50;
+    @apply flex items-center justify-center p-4;
+  }
+  
+  .modal-content {
+    @apply bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg;
+    @apply border-2 border-gray-200 dark:border-gray-700;
+    @apply rounded-2xl shadow-2xl;
+    @apply max-w-4xl w-full max-h-[90vh] overflow-y-auto;
+  }
+  
+  .dark .modal-content {
+    box-shadow: 
+      0 0 50px rgba(0, 217, 255, 0.2),
+      0 25px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Enhanced property cards */
+  .property-card {
+    @apply glass-effect rounded-lg p-4 transition-all duration-300;
+    @apply border-2 border-gray-200/60 dark:border-gray-600/60;
+    @apply hover:border-cyan-400/70 dark:hover:border-cyan-300/70;
+    @apply hover:bg-white/40 dark:hover:bg-black/40;
+    @apply shadow-md hover:shadow-lg;
+  }
+
+  /* Enhanced category legend */
+  .category-legend {
+    @apply glass-effect rounded-lg p-3 transition-all duration-300;
+    @apply border-2 border-gray-200/50 dark:border-gray-600/50;
+    @apply hover:border-gray-300 dark:hover:border-gray-500;
+    @apply hover:bg-white/30 dark:hover:bg-black/30;
+    @apply shadow-md hover:shadow-lg;
+  }
+
+  /* Responsive grid for periodic table */
+  .grid-cols-18 {
+    grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+
+  /* Enhanced clear button */
+  .clear-button {
+    @apply text-sm font-medium transition-all duration-300;
+    @apply text-cyan-600 dark:text-cyan-400;
+    @apply hover:text-cyan-700 dark:hover:text-cyan-300;
+    @apply hover:underline;
+    @apply px-3 py-1 rounded-md;
+    @apply hover:bg-cyan-50 dark:hover:bg-cyan-900/30;
+  }
+
+  /* Enhanced close button */
+  .close-button {
+    @apply p-2 rounded-full transition-all duration-300;
+    @apply bg-gray-100 dark:bg-gray-800;
+    @apply border-2 border-gray-300 dark:border-gray-600;
+    @apply hover:bg-gray-200 dark:hover:bg-gray-700;
+    @apply hover:border-gray-400 dark:hover:border-gray-500;
+    @apply shadow-md hover:shadow-lg;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .element-card {
+      @apply text-xs hover:scale-105;
+    }
+    
+    .glass-effect {
+      @apply bg-white/30 dark:bg-black/40 backdrop-blur-md;
+    }
+    
+    .reaction-card {
+      @apply p-3;
+    }
+    
+    .nav-button {
+      @apply px-4 py-2 text-sm;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .element-card {
+      @apply text-sm;
+    }
+  }
+
+  /* Enhanced animations */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+    }
+    to {
+      box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(0, 217, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(0, 217, 255, 0.8);
+    }
+  }
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full;
+  @apply hover:from-cyan-300 hover:to-blue-400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  @apply from-cyan-300 to-blue-400;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply from-cyan-200 to-blue-300;
+  box-shadow: 0 0 15px rgba(0, 217, 255, 0.7);
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .container {
+    @apply px-2;
+  }
+}
+
+/* Animation optimizations for mobile */
+@media (prefers-reduced-motion: reduce) {
+  .element-card {
+    @apply transition-none;
+  }
+  
+  .reaction-card {
+    @apply transition-none;
+  }
+  
+  .nav-button {
+    @apply transition-none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass-effect {
+    @apply bg-white dark:bg-black border-black dark:border-white;
+  }
+  
+  .element-card {
+    @apply border-black dark:border-white;
+  }
+  
+  .nav-button.active {
+    @apply bg-black dark:bg-white text-white dark:text-black;
+  }
+}
