@@ -129,6 +129,7 @@ export const QuizSystem: React.FC = () => {
   const [score, setScore] = useState(0);
   const [timeSpent, setTimeSpent] = useState(0);
   const [startTime, setStartTime] = useState<number>(0);
+  const [noQuestionsFound, setNoQuestionsFound] = useState(false);
   const [filters, setFilters] = useState({
     class: 'all',
     difficulty: 'all',
@@ -164,6 +165,12 @@ export const QuizSystem: React.FC = () => {
     const shuffled = [...filteredQuestions].sort(() => Math.random() - 0.5);
     const quizQuestions = shuffled.slice(0, Math.min(5, shuffled.length));
     
+    // Check if any questions were found
+    if (quizQuestions.length === 0) {
+      setNoQuestionsFound(true);
+      return;
+    }
+    
     setCurrentQuiz(quizQuestions);
     setUserAnswers(new Array(quizQuestions.length).fill(null));
     setCurrentQuestionIndex(0);
@@ -171,6 +178,7 @@ export const QuizSystem: React.FC = () => {
     setShowExplanation(false);
     setQuizStarted(true);
     setQuizCompleted(false);
+    setNoQuestionsFound(false);
     setScore(0);
     setTimeSpent(0);
     setStartTime(Date.now());
@@ -207,6 +215,7 @@ export const QuizSystem: React.FC = () => {
   const resetQuiz = () => {
     setQuizStarted(false);
     setQuizCompleted(false);
+    setNoQuestionsFound(false);
     setCurrentQuestionIndex(0);
     setSelectedAnswer(null);
     setShowExplanation(false);
@@ -235,6 +244,59 @@ export const QuizSystem: React.FC = () => {
     return 'Keep studying! 💪';
   };
 
+  // Handle no questions found
+  if (noQuestionsFound) {
+    return (
+      <div className="w-full max-w-4xl mx-auto p-6">
+        <div className="text-center">
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="p-3 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 shadow-xl">
+              <Brain className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-indigo-600 bg-clip-text text-transparent">
+              Chemistry Quiz
+            </h2>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
+          <div className="mb-6">
+            <XCircle className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              No Questions Found
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
+              No questions match your current filter selection. Please try adjusting your filters or select "All" for broader results.
+            </p>
+          </div>
+          
+          <div className="space-y-3 text-sm text-gray-500 dark:text-gray-400 mb-6">
+            <p>Current filters:</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
+                Class: {filters.class === 'all' ? 'All Classes' : `Class ${filters.class}`}
+              </span>
+              <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
+                Difficulty: {filters.difficulty === 'all' ? 'All Levels' : filters.difficulty}
+              </span>
+              <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
+                Topic: {filters.topic === 'all' ? 'All Topics' : filters.topic}
+              </span>
+            </div>
+          </div>
+          
+          <button
+            onClick={() => setNoQuestionsFound(false)}
+            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white 
+                       rounded-lg font-semibold hover:from-purple-600 hover:to-indigo-700 
+                       transition-all duration-300"
+          >
+            Adjust Filters
+          </button>
+        </div>
+      </div>
+    );
+  }
   if (!quizStarted) {
     return (
       <div className="w-full max-w-4xl mx-auto p-6">
@@ -448,6 +510,32 @@ export const QuizSystem: React.FC = () => {
 
   // Quiz in progress
   const currentQuestion = currentQuiz[currentQuestionIndex];
+  
+  // Additional safety check
+  if (!currentQuestion) {
+    return (
+      <div className="w-full max-w-4xl mx-auto p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 text-center">
+          <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            Quiz Error
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">
+            There was an error loading the current question. Please restart the quiz.
+          </p>
+          <button
+            onClick={resetQuiz}
+            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white 
+                       rounded-lg font-semibold hover:from-purple-600 hover:to-indigo-700 
+                       transition-all duration-300"
+          >
+            Restart Quiz
+          </button>
+        </div>
+      </div>
+    );
+  }
+  
   const progress = ((currentQuestionIndex + 1) / currentQuiz.length) * 100;
 
   return (
