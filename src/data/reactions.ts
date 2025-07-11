@@ -1,4 +1,6 @@
-import { organicReactions, type OrganicReaction } from './organicReactions';
+// Re-export from completeReactions for backward compatibility
+export * from './completeReactions';
+export { completeReactions as reactions } from './completeReactions';
 
 export interface Reaction {
   id: string;
