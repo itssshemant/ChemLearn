@@ -12,17 +12,17 @@ import {
   Home,
   Search
 } from 'lucide-react';
-import { InteractivePeriodicTable } from './InteractivePeriodicTable';
+import { CompletePeriodicTable } from './CompletePeriodicTable';
 import { ReactionsSection } from './ReactionsSection';
-import { VirtualLab } from './VirtualLab';
-import { QuizSystem } from './QuizSystem';
-import { LearningPaths } from './LearningPaths';
+import { EnhancedVirtualLab } from './EnhancedVirtualLab';
+import { ComprehensiveQuizSystem } from './ComprehensiveQuizSystem';
+import { MultiLearningPaths } from './MultiLearningPaths';
 import { SearchBar } from './SearchBar';
 import { ThemeToggle } from './ThemeToggle';
 import { ParticleBackground } from './ParticleBackground';
-import { searchElements } from '../data/completeElements';
-import { searchReactions } from '../data/completeReactions';
-import type { Element } from '../data/completeElements';
+import { searchElements } from '../data/allElements118';
+import { searchReactions } from '../data/extensiveReactions';
+import type { Element } from '../data/allElements118';
 
 type Section = 'home' | 'periodic' | 'reactions' | 'lab' | 'quiz' | 'paths';
 
@@ -55,18 +55,18 @@ export const EnhancedApp: React.FC = () => {
     switch (activeSection) {
       case 'periodic':
         return (
-          <InteractivePeriodicTable 
+          <CompletePeriodicTable 
             searchQuery={searchQuery}
           />
         );
       case 'reactions':
         return <ReactionsSection searchQuery={searchQuery} />;
       case 'lab':
-        return <VirtualLab />;
+        return <EnhancedVirtualLab />;
       case 'quiz':
-        return <QuizSystem />;
+        return <ComprehensiveQuizSystem />;
       case 'paths':
-        return <LearningPaths />;
+        return <MultiLearningPaths />;
       default:
         return <HomePage onSectionChange={setActiveSection} />;
     }
@@ -131,15 +131,15 @@ export const EnhancedApp: React.FC = () => {
                 <ThemeToggle />
                 
                 {/* Mobile Menu Button */}
-                <button
+                <div className="text-4xl font-bold mb-2">100+</div>
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   className="lg:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 >
-                  {mobileMenuOpen ? (
+                <div className="text-4xl font-bold mb-2">15+</div>
                     <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
                   ) : (
                     <Menu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-                  )}
+                <div className="text-4xl font-bold mb-2">500+</div>
                 </button>
               </div>
             </div>
@@ -241,23 +241,30 @@ export const EnhancedApp: React.FC = () => {
                   <li>Structured Learning Paths</li>
                 </ul>
               </div>
-              
-              <div>
+                The most comprehensive interactive chemistry learning platform for CBSE, JEE, and NEET students. 
+                Master chemistry with our complete periodic table, extensive reactions database, enhanced virtual labs, comprehensive quiz system, and structured learning paths.
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Resources</h4>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                  <li>CBSE Class 11 Chemistry</li>
-                  <li>CBSE Class 12 Chemistry</li>
-                  <li>JEE Preparation</li>
-                  <li>NEET Preparation</li>
-                  <li>Board Exam Practice</li>
-                </ul>
+                <div className="bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                  <span className="text-sm font-semibold">
+                    Made with ❤️ by Hemant
+                  </span>
+                </div>
+                <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                  <span className="text-sm font-semibold">
+                    Concept by Aryan
+                  </span>
+                </div>
               </div>
-            </div>
-            
-            <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
-                © 2025 ChemLearn. All rights reserved. | Empowering chemistry education through technology.
-              </p>
+                <li>Foundation Course</li>
+                <li>Advanced Problem Solving</li>
+                <li>Complete Periodic Table (118 Elements)</li>
+                <li>Extensive Reactions Database (100+ Reactions)</li>
+                <li>Enhanced Virtual Chemistry Lab</li>
+                <li>Comprehensive Quiz System (100+ Questions)</li>
+                <li>Multi-Track Learning Paths</li>
+                <li>JEE/NEET/CBSE Focused Content</li>
+              © 2025 ChemLearn. All rights reserved. | Empowering chemistry education through interactive technology.
             </div>
           </div>
         </footer>

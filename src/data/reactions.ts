@@ -1,6 +1,6 @@
 // Re-export from completeReactions for backward compatibility
-export * from './completeReactions';
-export { completeReactions as reactions } from './completeReactions';
+export * from './extensiveReactions';
+export { extensiveReactions as reactions } from './extensiveReactions';
 
 export interface Reaction {
   id: string;
@@ -22,32 +22,32 @@ export interface Reaction {
 }
 
 // Import reactions from completeReactions
-import { completeReactions } from './completeReactions';
+import { extensiveReactions } from './extensiveReactions';
 
 // Utility functions
 export const getReactionsByCategory = (category: string): Reaction[] => {
-  return completeReactions.filter(reaction => reaction.category === category);
+  return extensiveReactions.filter(reaction => reaction.category === category);
 };
 
 export const getReactionsByClass = (classLevel: string): Reaction[] => {
-  return completeReactions.filter(reaction => reaction.class === classLevel || reaction.class === 'both');
+  return extensiveReactions.filter(reaction => reaction.class === classLevel || reaction.class === 'both');
 };
 
 export const getReactionsByDifficulty = (difficulty: string): Reaction[] => {
-  return completeReactions.filter(reaction => reaction.difficulty === difficulty);
+  return extensiveReactions.filter(reaction => reaction.difficulty === difficulty);
 };
 
 export const getReactionsByChapter = (chapter: string): Reaction[] => {
-  return completeReactions.filter(reaction => reaction.chapter === chapter);
+  return extensiveReactions.filter(reaction => reaction.chapter === chapter);
 };
 
 export const getReactionsByType = (type: string): Reaction[] => {
-  return completeReactions.filter(reaction => reaction.type === type);
+  return extensiveReactions.filter(reaction => reaction.type === type);
 };
 
 export const searchReactions = (query: string): Reaction[] => {
   const lowercaseQuery = query.toLowerCase();
-  return completeReactions.filter(reaction => 
+  return extensiveReactions.filter(reaction => 
     reaction.title.toLowerCase().includes(lowercaseQuery) ||
     reaction.description.toLowerCase().includes(lowercaseQuery) ||
     reaction.category.toLowerCase().includes(lowercaseQuery) ||
@@ -60,17 +60,17 @@ export const searchReactions = (query: string): Reaction[] => {
 };
 
 export const getReactionCategories = (): string[] => {
-  return [...new Set(completeReactions.map(reaction => reaction.category))];
+  return [...new Set(extensiveReactions.map(reaction => reaction.category))];
 };
 
 export const getReactionTypes = (): string[] => {
-  return [...new Set(completeReactions.map(reaction => reaction.type))];
+  return [...new Set(extensiveReactions.map(reaction => reaction.type))];
 };
 
 export const getReactionChapters = (): string[] => {
-  return [...new Set(completeReactions.map(reaction => reaction.chapter))];
+  return [...new Set(extensiveReactions.map(reaction => reaction.chapter))];
 };
 
 export const getReactionDifficulties = (): string[] => {
-  return [...new Set(completeReactions.map(reaction => reaction.difficulty))];
+  return [...new Set(extensiveReactions.map(reaction => reaction.difficulty))];
 };
