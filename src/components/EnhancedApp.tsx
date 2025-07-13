@@ -218,16 +218,20 @@ export const EnhancedApp: React.FC = () => {
                   </h3>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  The most comprehensive interactive chemistry learning platform for CBSE students. 
-                  Master chemistry with our periodic table, reactions database, virtual labs, and more.
+                  The most comprehensive interactive chemistry learning platform for CBSE, JEE, and NEET students. 
+                  Master chemistry with our complete periodic table, extensive reactions database, enhanced virtual labs, comprehensive quiz system, and structured learning paths.
                 </p>
                 <div className="flex space-x-4">
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    Made with ❤️ by Hemant
-                  </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    Concept by Aryan
-                  </span>
+                  <div className="bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                    <span className="text-sm font-semibold">
+                      Made with ❤️ by Hemant
+                    </span>
+                  </div>
+                  <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-lg shadow-lg">
+                    <span className="text-sm font-semibold">
+                      Concept by Aryan
+                    </span>
+                  </div>
                 </div>
               </div>
               
@@ -241,30 +245,25 @@ export const EnhancedApp: React.FC = () => {
                   <li>Structured Learning Paths</li>
                 </ul>
               </div>
-                The most comprehensive interactive chemistry learning platform for CBSE, JEE, and NEET students. 
-                Master chemistry with our complete periodic table, extensive reactions database, enhanced virtual labs, comprehensive quiz system, and structured learning paths.
+              
+              <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Resources</h4>
                 <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <div className="bg-gradient-to-r from-pink-500 to-red-500 text-white px-4 py-2 rounded-lg shadow-lg">
-                  <span className="text-sm font-semibold">
-                    Made with ❤️ by Hemant
-                  </span>
-                </div>
-                <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-lg shadow-lg">
-                  <span className="text-sm font-semibold">
-                    Concept by Aryan
-                  </span>
-                </div>
+                  <li>Foundation Course</li>
+                  <li>Advanced Problem Solving</li>
+                  <li>Complete Periodic Table (118 Elements)</li>
+                  <li>Extensive Reactions Database (100+ Reactions)</li>
+                  <li>Enhanced Virtual Chemistry Lab</li>
+                  <li>Comprehensive Quiz System (100+ Questions)</li>
+                  <li>Multi-Track Learning Paths</li>
+                  <li>JEE/NEET/CBSE Focused Content</li>
+                </ul>
               </div>
-                <li>Foundation Course</li>
-                <li>Advanced Problem Solving</li>
-                <li>Complete Periodic Table (118 Elements)</li>
-                <li>Extensive Reactions Database (100+ Reactions)</li>
-                <li>Enhanced Virtual Chemistry Lab</li>
-                <li>Comprehensive Quiz System (100+ Questions)</li>
-                <li>Multi-Track Learning Paths</li>
-                <li>JEE/NEET/CBSE Focused Content</li>
-              © 2025 ChemLearn. All rights reserved. | Empowering chemistry education through interactive technology.
+            </div>
+            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                © 2025 ChemLearn. All rights reserved. | Empowering chemistry education through interactive technology.
+              </p>
             </div>
           </div>
         </footer>
