@@ -131,15 +131,15 @@ export const EnhancedApp: React.FC = () => {
                 <ThemeToggle />
                 
                 {/* Mobile Menu Button */}
-                <div className="text-4xl font-bold mb-2">100+</div>
+                <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   className="lg:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 >
-                <div className="text-4xl font-bold mb-2">15+</div>
+                  {mobileMenuOpen ? (
                     <X className="w-6 h-6 text-gray-600 dark:text-gray-300" />
                   ) : (
                     <Menu className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-                <div className="text-4xl font-bold mb-2">500+</div>
+                  )}
                 </button>
               </div>
             </div>
