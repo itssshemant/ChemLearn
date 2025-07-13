@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Beaker, Thermometer, Droplet, Zap, Play, Pause, RotateCcw, Settings, FlaskConical, Atom, Microscope } from 'lucide-react';
+import { Beaker, Thermometer, Droplet, Zap, Play, Pause, RotateCcw, Settings, Clock } from 'lucide-react';
 
 interface Experiment {
   id: string;
